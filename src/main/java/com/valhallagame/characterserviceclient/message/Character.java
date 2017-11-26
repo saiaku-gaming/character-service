@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Character {
-	private String owner;
+	private String ownerUsername;
 	
 	//Case sensative as it overrides DisplayUsername
 	private String characterName;
