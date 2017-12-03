@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.valhallagame.characterserviceclient.message.Character;
 import com.valhallagame.characterserviceclient.message.CharacterNameAndOwnerUsernameParameter;
 import com.valhallagame.characterserviceclient.message.CharacterNameParameter;
+import com.valhallagame.characterserviceclient.message.EqippedItemsParameter;
 import com.valhallagame.characterserviceclient.message.UsernameParameter;
 import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
@@ -72,6 +73,11 @@ public class CharacterServiceClient {
 	public RestResponse<Character> getSelectedCharacter(String username) throws IOException {
 		UsernameParameter usernameParam = new UsernameParameter(username);
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-selected-character", usernameParam,
+				Character.class);
+	}
+
+	public RestResponse<Character> saveEquippedItems(EqippedItemsParameter input) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/save-equipped-items", input,
 				Character.class);
 	}
 }
