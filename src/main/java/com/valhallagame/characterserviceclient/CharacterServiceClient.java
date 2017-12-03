@@ -35,10 +35,15 @@ public class CharacterServiceClient {
 		return characterServiceClient;
 	}
 
+	public RestResponse<Character> getCharacterWithoutOwnerValidation(String characterName) throws IOException {
+		CharacterNameParameter character = new CharacterNameParameter(characterName);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character-without-owner-validation", character, Character.class);
+	}
+	
 	public RestResponse<Character> getCharacter(String username, String characterName) throws IOException {
 		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
 				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get", characterAndOwner, Character.class);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character", characterAndOwner, Character.class);
 	}
 
 	public RestResponse<JsonNode> getAll(String username) throws IOException {
