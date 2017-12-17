@@ -10,7 +10,8 @@ import lombok.NoArgsConstructor;
 public class Character {
 	private String ownerUsername;
 	
-	//Case sensative as it overrides DisplayUsername
+	private String displayCharacterName;
+	
 	private String characterName;
 	
     private String chestItem;
