@@ -85,4 +85,10 @@ public class CharacterServiceClient {
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/save-equipped-items", input,
 				Character.class);
 	}
+
+	public RestResponse<String> createDebugCharacter(String username, String characterName) throws IOException {
+		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
+				characterName, username);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create-debug-character", characterAndOwner, String.class);
+	}
 }
