@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EquippedItem {
+public class EquippedItemParameter {
 	@NotNull
 	String itemSlot;
 	String armament;

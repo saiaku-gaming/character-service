@@ -3,11 +3,11 @@ package com.valhallagame.characterserviceclient;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.valhallagame.characterserviceclient.message.Character;
 import com.valhallagame.characterserviceclient.message.CharacterNameAndOwnerUsernameParameter;
 import com.valhallagame.characterserviceclient.message.CharacterNameParameter;
 import com.valhallagame.characterserviceclient.message.EqippedItemsParameter;
 import com.valhallagame.characterserviceclient.message.UsernameParameter;
+import com.valhallagame.characterserviceclient.model.CharacterData;
 import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
 import com.valhallagame.common.RestResponse;
@@ -35,15 +35,15 @@ public class CharacterServiceClient {
 		return characterServiceClient;
 	}
 
-	public RestResponse<Character> getCharacterWithoutOwnerValidation(String characterName) throws IOException {
+	public RestResponse<CharacterData> getCharacterWithoutOwnerValidation(String characterName) throws IOException {
 		CharacterNameParameter character = new CharacterNameParameter(characterName);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character-without-owner-validation", character, Character.class);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character-without-owner-validation", character, CharacterData.class);
 	}
 	
-	public RestResponse<Character> getCharacter(String username, String characterName) throws IOException {
+	public RestResponse<CharacterData> getCharacter(String username, String characterName) throws IOException {
 		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
 				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character", characterAndOwner, Character.class);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character", characterAndOwner, CharacterData.class);
 	}
 
 	public RestResponse<JsonNode> getAll(String username) throws IOException {
@@ -75,15 +75,15 @@ public class CharacterServiceClient {
 				String.class);
 	}
 
-	public RestResponse<Character> getSelectedCharacter(String username) throws IOException {
+	public RestResponse<CharacterData> getSelectedCharacter(String username) throws IOException {
 		UsernameParameter usernameParam = new UsernameParameter(username);
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-selected-character", usernameParam,
-				Character.class);
+				CharacterData.class);
 	}
 
-	public RestResponse<Character> saveEquippedItems(EqippedItemsParameter input) throws IOException {
+	public RestResponse<CharacterData> saveEquippedItems(EqippedItemsParameter input) throws IOException {
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/save-equipped-items", input,
-				Character.class);
+				CharacterData.class);
 	}
 
 	public RestResponse<String> createDebugCharacter(String username, String characterName) throws IOException {

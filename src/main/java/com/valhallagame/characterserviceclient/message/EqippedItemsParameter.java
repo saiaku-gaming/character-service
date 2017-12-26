@@ -13,5 +13,5 @@ public class EqippedItemsParameter {
 	@NotNull
 	String characterName;
 	@NotNull
-	List<EquippedItem> equippedItems;
+	List<EquippedItemParameter> equippedItems;
 }

@@ -1,4 +1,4 @@
-package com.valhallagame.characterserviceclient.message;
+package com.valhallagame.characterserviceclient.model;
 
 import javax.validation.constraints.NotNull;
 
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character {
+public class CharacterData {
 	
 	@NotNull
 	private String ownerUsername;
