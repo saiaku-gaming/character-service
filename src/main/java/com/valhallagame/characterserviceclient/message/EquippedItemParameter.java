@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 public class EquippedItemParameter {
 	@NotNull
 	String itemSlot;
-	String armament;
-	String armor;
+	@NotNull
+	String armament; //Can be the string None but not null
+	@NotNull
+	String armor; //Can be the string None but not null
 } 
