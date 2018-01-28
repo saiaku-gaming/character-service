@@ -1,12 +1,20 @@
 package com.valhallagame.characterserviceclient;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.valhallagame.characterserviceclient.message.CharacterNameAndOwnerUsernameParameter;
-import com.valhallagame.characterserviceclient.message.CharacterNameParameter;
-import com.valhallagame.characterserviceclient.message.EqippedItemsParameter;
-import com.valhallagame.characterserviceclient.message.UsernameParameter;
+import com.valhallagame.characterserviceclient.message.CharacterAvailableParameter;
+import com.valhallagame.characterserviceclient.message.CreateCharacterParameter;
+import com.valhallagame.characterserviceclient.message.CreateDebugCharacterParameter;
+import com.valhallagame.characterserviceclient.message.DeleteCharacterParameter;
+import com.valhallagame.characterserviceclient.message.EquippedItemParameter;
+import com.valhallagame.characterserviceclient.message.GetAllCharactersParameter;
+import com.valhallagame.characterserviceclient.message.GetCharacterParameter;
+import com.valhallagame.characterserviceclient.message.GetOwnedCharacterParameter;
+import com.valhallagame.characterserviceclient.message.GetSelectedCharacterParameter;
+import com.valhallagame.characterserviceclient.message.SaveEquippedItemsParameter;
+import com.valhallagame.characterserviceclient.message.SelectCharacterParameter;
 import com.valhallagame.characterserviceclient.model.CharacterData;
 import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
@@ -35,60 +43,57 @@ public class CharacterServiceClient {
 		return characterServiceClient;
 	}
 
-	public RestResponse<CharacterData> getCharacterWithoutOwnerValidation(String characterName) throws IOException {
-		CharacterNameParameter character = new CharacterNameParameter(characterName);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character-without-owner-validation", character, CharacterData.class);
-	}
-	
-	public RestResponse<CharacterData> getCharacter(String username, String characterName) throws IOException {
-		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
-				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character", characterAndOwner, CharacterData.class);
+	public RestResponse<CharacterData> getCharacter(String characterName) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-character",
+				new GetCharacterParameter(characterName), CharacterData.class);
 	}
 
-	public RestResponse<JsonNode> getAll(String username) throws IOException {
-		UsernameParameter usernameParam = new UsernameParameter(username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-all", usernameParam, JsonNode.class);
+	public RestResponse<CharacterData> getOwnedCharacter(String username, String characterName)
+			throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-owned-character",
+				new GetOwnedCharacterParameter(characterName, username), CharacterData.class);
 	}
 
-	public RestResponse<String> create(String username, String characterName) throws IOException {
-		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
-				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create", characterAndOwner, String.class);
+	public RestResponse<JsonNode> getAllCharacters(String username) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-all-characters",
+				new GetAllCharactersParameter(username), JsonNode.class);
 	}
 
-	public RestResponse<String> delete(String username, String characterName) throws IOException {
-		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
-				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/delete", characterAndOwner, String.class);
-	}
-
-	public RestResponse<String> characterAvailable(String characterName) throws IOException {
-		CharacterNameParameter cnp = new CharacterNameParameter(characterName);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/character-available", cnp, String.class);
-	}
-
-	public RestResponse<String> selectCharacter(String username, String characterName) throws IOException {
-		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
-				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/select-character", characterAndOwner,
+	public RestResponse<String> createCharacter(String username, String characterName) throws IOException {
+		CreateCharacterParameter characterAndOwner = new CreateCharacterParameter(characterName, username);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create-character", characterAndOwner,
 				String.class);
 	}
 
-	public RestResponse<CharacterData> getSelectedCharacter(String username) throws IOException {
-		UsernameParameter usernameParam = new UsernameParameter(username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-selected-character", usernameParam,
-				CharacterData.class);
+	public RestResponse<String> deleteCharacter(String username, String characterName) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/delete-character",
+				new DeleteCharacterParameter(characterName, username), String.class);
 	}
 
-	public RestResponse<CharacterData> saveEquippedItems(EqippedItemsParameter input) throws IOException {
+	public RestResponse<String> characterAvailable(String characterName) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/character-available",
+				new CharacterAvailableParameter(characterName), String.class);
+	}
+
+	public RestResponse<String> selectCharacter(String username, String characterName) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/select-character",
+				new SelectCharacterParameter(characterName, username), String.class);
+	}
+
+	public RestResponse<CharacterData> getSelectedCharacter(String username) throws IOException {
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/get-selected-character",
+				new GetSelectedCharacterParameter(username), CharacterData.class);
+	}
+
+	public RestResponse<CharacterData> saveEquippedItems(String username, String characterName, List<EquippedItemParameter> equippedItems) throws IOException {
+		SaveEquippedItemsParameter input = new SaveEquippedItemsParameter(username, characterName, equippedItems);
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/save-equipped-items", input,
 				CharacterData.class);
 	}
 
 	public RestResponse<String> createDebugCharacter(String username, String characterName) throws IOException {
-		CharacterNameAndOwnerUsernameParameter characterAndOwner = new CharacterNameAndOwnerUsernameParameter(
-				characterName, username);
-		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create-debug-character", characterAndOwner, String.class);
+		CreateDebugCharacterParameter input = new CreateDebugCharacterParameter(characterName, username);
+		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create-debug-character",
+				input, String.class);
 	}
 }

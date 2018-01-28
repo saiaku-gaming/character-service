@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CharacterNameAndOwnerUsernameParameter {
+public class CreateDebugCharacterParameter {
 	@NotNull
 	@CheckLowercase
-	private String characterName;
+	private String displayCharacterName;
 	@NotNull
 	@CheckLowercase
-	private String ownerUsername;
+	private String username;
 }

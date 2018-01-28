@@ -11,7 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UsernameParameter {
+public class SelectCharacterParameter {
+	@NotNull
+	@CheckLowercase
+	private String characterName;
 	@NotNull
 	@CheckLowercase
 	private String username;
