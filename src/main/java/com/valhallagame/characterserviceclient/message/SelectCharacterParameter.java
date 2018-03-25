@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class SelectCharacterParameter {
 	@NotNull
-	@CheckLowercase
-	private String characterName;
+	private String displayCharacterName;
 	@NotNull
 	@CheckLowercase
 	private String username;
