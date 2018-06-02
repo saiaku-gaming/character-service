@@ -1,6 +1,6 @@
 package com.valhallagame.characterserviceclient.message;
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.valhallagame.common.validation.CheckLowercase;
 
@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeleteCharacterParameter {
-	@NotNull
+	@NotBlank
 	@CheckLowercase
 	private String characterName;
-	@NotNull
+	@NotBlank
 	@CheckLowercase
 	private String username;
 }

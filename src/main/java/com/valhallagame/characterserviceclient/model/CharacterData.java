@@ -2,6 +2,8 @@ package com.valhallagame.characterserviceclient.model;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CharacterData {
 	
-	@NotNull
+	@NotBlank
 	private String ownerUsername;
 	
-	@NotNull
+	@NotBlank
 	private String displayCharacterName;
 	
-	@NotNull
+	@NotBlank
 	private String characterName;
 	
 	@NotNull

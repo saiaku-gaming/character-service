@@ -1,6 +1,6 @@
 package com.valhallagame.characterserviceclient.message;
 
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CharacterAvailableParameter {
-	@NotNull
+	@NotBlank
 	private String characterName;
 }
