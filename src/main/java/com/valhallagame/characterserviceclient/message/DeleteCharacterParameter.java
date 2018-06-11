@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class DeleteCharacterParameter {
 	@NotBlank
 	@CheckLowercase
-	private String characterName;
+	private String displayCharacterName;
 	@NotBlank
 	@CheckLowercase
 	private String username;
