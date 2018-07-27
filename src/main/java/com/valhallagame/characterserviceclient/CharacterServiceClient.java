@@ -1,24 +1,14 @@
 package com.valhallagame.characterserviceclient;
 
-import java.io.IOException;
-import java.util.List;
-
 import com.fasterxml.jackson.databind.JsonNode;
-import com.valhallagame.characterserviceclient.message.CharacterAvailableParameter;
-import com.valhallagame.characterserviceclient.message.CreateCharacterParameter;
-import com.valhallagame.characterserviceclient.message.CreateDebugCharacterParameter;
-import com.valhallagame.characterserviceclient.message.DeleteCharacterParameter;
-import com.valhallagame.characterserviceclient.message.EquippedItemParameter;
-import com.valhallagame.characterserviceclient.message.GetAllCharactersParameter;
-import com.valhallagame.characterserviceclient.message.GetCharacterParameter;
-import com.valhallagame.characterserviceclient.message.GetOwnedCharacterParameter;
-import com.valhallagame.characterserviceclient.message.GetSelectedCharacterParameter;
-import com.valhallagame.characterserviceclient.message.SaveEquippedItemsParameter;
-import com.valhallagame.characterserviceclient.message.SelectCharacterParameter;
+import com.valhallagame.characterserviceclient.message.*;
 import com.valhallagame.characterserviceclient.model.CharacterData;
 import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestCaller;
 import com.valhallagame.common.RestResponse;
+
+import java.io.IOException;
+import java.util.List;
 
 public class CharacterServiceClient {
 
@@ -59,8 +49,8 @@ public class CharacterServiceClient {
 				new GetAllCharactersParameter(username), JsonNode.class);
 	}
 
-	public RestResponse<String> createCharacter(String username, String characterName) throws IOException {
-		CreateCharacterParameter characterAndOwner = new CreateCharacterParameter(characterName, username);
+    public RestResponse<String> createCharacter(String username, String characterName, String startingClass) throws IOException {
+        CreateCharacterParameter characterAndOwner = new CreateCharacterParameter(characterName, username, startingClass);
 		return restCaller.postCall(characterServiceServerUrl + "/v1/character/create-character", characterAndOwner,
 				String.class);
 	}
