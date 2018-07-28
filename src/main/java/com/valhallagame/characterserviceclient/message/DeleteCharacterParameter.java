@@ -1,19 +1,16 @@
 package com.valhallagame.characterserviceclient.message;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.valhallagame.common.validation.CheckLowercase;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeleteCharacterParameter {
 	@NotBlank
-	@CheckLowercase
 	private String displayCharacterName;
 	@NotBlank
 	@CheckLowercase
