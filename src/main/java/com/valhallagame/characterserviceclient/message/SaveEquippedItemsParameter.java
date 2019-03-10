@@ -1,14 +1,12 @@
 package com.valhallagame.characterserviceclient.message;
 
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-
 import com.valhallagame.common.validation.CheckLowercase;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,11 +14,11 @@ import lombok.NoArgsConstructor;
 public class SaveEquippedItemsParameter {
 	@NotNull
 	@CheckLowercase
-	String username;
+	private String username;
 	
 	@NotNull
-	String characterName;
+	private String characterName;
 	
 	@NotNull
-	List<EquippedItemParameter> equippedItems;
+	private List<EquippedItemParameter> equippedItems;
 }
