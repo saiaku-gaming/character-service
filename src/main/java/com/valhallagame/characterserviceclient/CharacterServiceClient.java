@@ -46,10 +46,10 @@ public class CharacterServiceClient extends AbstractServiceClient {
 				new GetAllCharactersParameter(username), JsonNode.class);
 	}
 
-    public RestResponse<String> createCharacter(String username, String characterName, String startingClass) throws IOException {
+    public RestResponse<CharacterData> createCharacter(String username, String characterName, String startingClass) throws IOException {
         CreateCharacterParameter characterAndOwner = new CreateCharacterParameter(characterName, username, startingClass);
 		return restCaller.postCall(serviceServerUrl + "/v1/character/create-character", characterAndOwner,
-				String.class);
+                CharacterData.class);
 	}
 
 	public RestResponse<String> deleteCharacter(String username, String characterName) throws IOException {
