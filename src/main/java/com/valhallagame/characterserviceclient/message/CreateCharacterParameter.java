@@ -4,6 +4,7 @@ import com.valhallagame.common.validation.CheckLowercase;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateCharacterParameter {
-	@NotNull
+    @NotBlank
 	private String displayCharacterName;
 
 	@NotNull
