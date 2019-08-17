@@ -21,12 +21,12 @@ public class CharacterData {
 	@NotBlank
 	private String characterName;
 
-	@NotNull
+	@NotBlank
 	private String headItem;
 
 	private String headItemMetaData;
 
-	@NotNull
+	@NotBlank
 	private String beardItem;
 
 	private String beardItemMetaData;
@@ -36,17 +36,17 @@ public class CharacterData {
 
 	private String chestItemMetaData;
 
-	@NotNull
+	@NotBlank
 	private String handsItem;
 
 	private String handsItemMetaData;
 
-	@NotNull
+	@NotBlank
 	private String legsItem;
 
 	private String legsItemMetaData;
 
-	@NotNull
+	@NotBlank
 	private String feetItem;
 
 	private String feetItemMetaData;
@@ -56,7 +56,7 @@ public class CharacterData {
 
 	private String mainhandArmamentMetaData;
 
-	@NotNull
+	@NotBlank
 	private String offHandArmament;
 
 	private String offHandArmamentMetaData;
