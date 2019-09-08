@@ -6,20 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaveEquippedItemsParameter {
-	@NotNull
-	@CheckLowercase
-	private String username;
+public class EquipItemParameter {
+    @NotBlank
+    @CheckLowercase
+    private String characterName;
 
-	@NotBlank
-	private String characterName;
-	
-	@NotNull
-	private List<EquippedItemParameter> equippedItems;
+    @NotBlank
+    private EquippedItemParameter itemToEquip;
 }
