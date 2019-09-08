@@ -8,7 +8,6 @@ import com.valhallagame.common.DefaultServicePortMappings;
 import com.valhallagame.common.RestResponse;
 
 import java.io.IOException;
-import java.util.List;
 
 public class CharacterServiceClient extends AbstractServiceClient {
 
@@ -72,9 +71,15 @@ public class CharacterServiceClient extends AbstractServiceClient {
 				new GetSelectedCharacterParameter(username), CharacterData.class);
 	}
 
-	public RestResponse<CharacterData> saveEquippedItems(String username, String characterName, List<EquippedItemParameter> equippedItems) throws IOException {
-		SaveEquippedItemsParameter input = new SaveEquippedItemsParameter(username, characterName, equippedItems);
-		return restCaller.postCall(serviceServerUrl + "/v1/character/save-equipped-items", input,
+	public RestResponse<CharacterData> equipItem(String username, EquippedItemParameter itemToEquip) throws IOException {
+		EquipItemParameter input = new EquipItemParameter(username, itemToEquip);
+		return restCaller.postCall(serviceServerUrl + "/v1/character/equip-item", input,
+				CharacterData.class);
+	}
+
+	public RestResponse<CharacterData> unequipItem(String username, String itemSlot) throws IOException {
+		UnequipItemParameter input = new UnequipItemParameter(username, itemSlot);
+		return restCaller.postCall(serviceServerUrl + "/v1/character/unequip-item", input,
 				CharacterData.class);
 	}
 
